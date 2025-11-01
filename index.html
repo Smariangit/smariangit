@@ -74,12 +74,20 @@
             height: 100%;
             border: 0;
         }
+        /* Image styling */
+        .dashboard-screenshot {
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            object-fit: contain;
+            border: 1px solid #475569;
+        }
     </style>
     <script>
         // FUNCTION TO CALCULATE DYNAMIC EXPERIENCE TIME
         function calculateExperienceTime() {
             // Start date: August 2023 (7, 2023) as the earliest entry in resume
-            const startDate = new Date(2023, 8	, 8); 
+            const startDate = new Date(2023, 7, 1); 
             const currentDate = new Date();
 
             let years = currentDate.getFullYear() - startDate.getFullYear();
@@ -294,10 +302,10 @@
 
             <div class="space-y-16">
 
-                <!-- NEW PROJECT 1: Interactive Looker Studio Dashboard (EMBED) - NOW LIVE -->
+                <!-- NEW PROJECT 1: Interactive Looker Studio Dashboard (IMAGE & LINK) -->
                 <div class="card p-8 rounded-2xl border-l-4 border-fuchsia-500">
                     <h4 class="text-3xl font-bold text-fuchsia-400 mb-3">Interactive BI Dashboard (Looker Studio)</h4>
-                    <p class="text-slate-400 text-lg mb-6">Live demonstration of business information display facilitated by GCP and Python pipelines.</p>
+                    <p class="text-slate-400 text-lg mb-6">A live demonstration of business intelligence reporting, facilitated by automated GCP and Python pipelines, showing actionable insights into "Crimes in India" (2020-2022).</p>
 
                     <div class="grid md:grid-cols-3 gap-6 mb-6">
                         <div class="col-span-1">
@@ -319,16 +327,14 @@
                         </div>
                     </div>
 
-                    <!-- Looker Studio Embed Container -->
-                    <div class="looker-embed-container">
-                        <!-- Actual Looker Studio iFrame code -->
-                        <iframe 
-                            width="100%" 
-                            height="100%" 
-                            src="https://lookerstudio.google.com/embed/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda/page/VgD" 
-                            allowfullscreen 
-                            style="border:0;"
-                        ></iframe>
+                    <!-- Dashboard Image and Link -->
+                    <div class="flex flex-col items-center space-y-4">
+                        <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="w-full">
+                            <img src="image_fb3b44.jpg" alt="Screenshot of Looker Studio Dashboard on Crimes in India" class="dashboard-screenshot">
+                        </a>
+                        <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="btn-primary px-6 py-3 rounded-xl font-semibold text-lg hover:ring-2 ring-cyan-400 flex items-center">
+                            View Live Dashboard <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
+                        </a>
                     </div>
                 </div>
 
