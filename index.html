@@ -42,45 +42,36 @@
             color: #cbd5e1; /* Slate 300 */
             border: 1px solid #475569; /* Slate 600 */
         }
-        /* Style for the project 'Architecture Placeholder' */
-        .architecture-placeholder {
-            min-height: 200px;
-            border: 2px dashed #475569;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: #94a3b8;
-            background-color: #1f2937;
-            padding: 1rem;
-            text-align: left;
-            flex-direction: column;
-        }
-        /* Responsive Iframe Container for the Dashboard */
-        .looker-embed-container {
-            position: relative;
+        /* Style for the project 'Architecture Placeholder' - Now used as an image container */
+        .architecture-image-container {
             width: 100%;
-            /* 3:2 Aspect Ratio (adjust as needed for your dashboard) */
-            padding-bottom: 66.66%; 
-            height: 0;
+            border: 2px solid #475569;
+            border-radius: 0.75rem;
             overflow: hidden;
-            border-radius: 0.75rem; /* rounded-xl */
+            background-color: #1f2937;
         }
-        .looker-embed-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .architecture-image-container img {
             width: 100%;
-            height: 100%;
-            border: 0;
+            height: auto;
+            object-fit: contain;
         }
-        /* Image styling */
+        
+        /* Image styling for Looker Studio */
         .dashboard-screenshot {
             width: 100%;
             height: auto;
             border-radius: 0.75rem;
             object-fit: contain;
             border: 1px solid #475569;
+        }
+
+        /* --- CLASS FOR LARGER IMAGE DISPLAY (DEPRECATED FOR THIS PROJECT) --- */
+        @media (min-width: 768px) {
+            .project-layout-wide-img {
+                display: grid;
+                grid-template-columns: 1fr 2fr; /* Text takes 33%, Image takes 66% */
+                gap: 2rem;
+            }
         }
     </style>
     <script>
@@ -156,7 +147,7 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- 1. Hero Section -->
+        <!-- 1. Hero Section - Bolding intentionally kept here for high impact -->
         <section id="hero" class="py-20 md:py-32 flex flex-col items-center text-center">
             <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
                 Hi, I'm <span class="text-accent">Sparsh Verma</span>
@@ -236,7 +227,7 @@
             </div>
         </section>
 
-        <!-- 3. Professional Experience Section -->
+        <!-- 3. Professional Experience Section - BOLDING REMOVED -->
         <section id="experience" class="py-16 border-t border-slate-700">
             <h3 class="text-4xl font-bold mb-10 text-center">Professional Experience</h3>
             
@@ -251,19 +242,23 @@
                     <ul class="list-none space-y-3 text-slate-400">
                         <li class="flex items-start">
                             <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
-                            Built end-to-end data pipelines for Power BI dashboards, sourcing data directly from <strong>GCP BigQuery</strong>.
+                            Built end-to-end data pipelines for Power BI dashboards, sourcing data directly from GCP BigQuery.
                         </li>
                         <li class="flex items-start">
                             <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
-                            Deployed <strong>GCP CI/CD workflows</strong> for Python-based Cloud Run functions to ensure robust and automated data flows.
+                            Deployed GCP CI/CD workflows for Python-based Cloud Run functions to ensure robust and automated data flows.
                         </li>
                         <li class="flex items-start">
                             <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
-                            Developed a critical automation solution using <strong>PowerApps, Power Automate, and FastAPI</strong>, resulting in a <strong>60% reduction in manual effort</strong> across existing processes.
+                            Developed a critical automation solution using PowerApps, Power Automate, and FastAPI.
                         </li>
                         <li class="flex items-start">
                             <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
-                            Implemented <strong>Terraform IaC</strong> for disaster recovery of GCP infrastructure, ensuring one-click infra rebuild and <strong>100% business continuity</strong>.
+                            This solution achieved a 60% reduction in manual effort across existing processes.
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-accent mr-3 mt-1 shrink-0"></i>
+                            Implemented Terraform IaC for disaster recovery of GCP infrastructure, ensuring one-click infra rebuild and 100% business continuity.
                         </li>
                     </ul>
                 </div>
@@ -278,22 +273,22 @@
                     <ul class="list-none space-y-3 text-slate-400">
                         <li class="flex items-start">
                             <i data-lucide="check-circle" class="w-5 h-5 text-yellow-500 mr-3 mt-1 shrink-0"></i>
-                            Designed <strong>FastAPIs</strong> and pipelines for Looker Studio integration with GCP, eliminating manual intervention and <strong>improving reporting speed by 30%</strong>.
+                            Designed FastAPIs and pipelines for Looker Studio integration with GCP, eliminating manual intervention and improving reporting speed by 30%.
                         </li>
                         <li class="flex items-start">
                             <i data-lucide="check-circle" class="w-5 h-5 text-yellow-500 mr-3 mt-1 shrink-0"></i>
-                            Developed Python-based <strong>ETL scripts</strong> to interact with external APIs (RapidAPI, Looker API), automating data ingestion.
+                            Developed Python-based ETL scripts to interact with external APIs (RapidAPI, Looker API), automating data ingestion.
                         </li>
                         <li class="flex items-start">
                             <i data-lucide="check-circle" class="w-5 h-5 text-yellow-500 mr-3 mt-1 shrink-0"></i>
-                            Automated workflows utilizing <strong>GCP (BigQuery), DigitalOcean, and ELK Stack (Kibana)</strong> for scalable data operations.
+                            Automated workflows utilizing GCP (BigQuery), DigitalOcean, and ELK Stack (Kibana) for scalable data operations.
                         </li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- 4. Key Projects Section -->
+        <!-- 4. Key Projects Section - BOLDING REMOVED -->
         <section id="projects" class="py-16 border-t border-slate-700">
             <h3 class="text-4xl font-bold mb-10 text-center">Key Engineering Projects</h3>
             <p class="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
@@ -302,45 +297,51 @@
 
             <div class="space-y-16">
 
-                <!-- NEW PROJECT 1: Interactive Looker Studio Dashboard (IMAGE & LINK) -->
+                <!-- PROJECT 1: Interactive Looker Studio Dashboard - REVERTED TO STACKED LAYOUT AND REDUCED IMAGE SIZE -->
                 <div class="card p-8 rounded-2xl border-l-4 border-fuchsia-500">
-                    <h4 class="text-3xl font-bold text-fuchsia-400 mb-3">Interactive BI Dashboard (Looker Studio)</h4>
-                    <p class="text-slate-400 text-lg mb-6">A live demonstration of business intelligence reporting, facilitated by automated GCP and Python pipelines, showing actionable insights into "Crimes in India" (2020-2022).</p>
-
-                    <div class="grid md:grid-cols-3 gap-6 mb-6">
-                        <div class="col-span-1">
-                            <h5 class="font-semibold text-slate-300 mb-2">Technologies</h5>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Google Looker Studio</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">GCP BigQuery</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Python Data Pipeline</span>
-                                <span class="tech-tag px-3 py-1 rounded-full text-sm">Looker API / Google APIs</span>
-                            </div>
-                        </div>
-                        <div class="col-span-2">
-                            <h5 class="font-semibold text-slate-300 mb-2">Key Highlights</h5>
-                            <ul class="list-disc list-inside text-slate-400 space-y-1">
-                                <li>Directly integrated with GCP BigQuery via an automated data pipeline.</li>
-                                <li>Designed to improve data accessibility and facilitate quicker stakeholder decision-making.</li>
-                                <li>This project demonstrates end-to-end ELT/BI capability from source to visualization.</li>
-                            </ul>
-                        </div>
+                    <!-- Removed project-layout-wide-img class to revert to stacked layout -->
+                    <h4 class="text-3xl font-bold text-fuchsia-400 mb-3 text-center">Interactive BI Dashboard</h4>
+                    
+                    <!-- Image centered and reduced -->
+                    <div class="flex justify-center mb-6">
+                        <img src="Pictures/image_fb3b44.jpg" 
+                             alt="Screenshot of Looker Studio Dashboard on Crimes in India" 
+                             class="dashboard-screenshot shadow-xl max-w-3xl mx-auto"> <!-- Added max-w-3xl and mx-auto -->
                     </div>
 
-                    <!-- Dashboard Image and Link -->
-                    <div class="flex flex-col items-center space-y-4">
-                        <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="w-full">
-                            <img src="image_fb3b44.jpg" alt="Screenshot of Looker Studio Dashboard on Crimes in India" class="dashboard-screenshot">
-                        </a>
-                        <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="btn-primary px-6 py-3 rounded-xl font-semibold text-lg hover:ring-2 ring-cyan-400 flex items-center">
-                            View Live Dashboard <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
-                        </a>
+                    <!-- Text and Button Block (now below the image) -->
+                    <div class="text-center">
+                        <p class="text-slate-400 text-lg mb-6 max-w-3xl mx-auto">
+                            A live demonstration of business intelligence reporting, facilitated by automated GCP and Python pipelines, showing actionable insights into "Crimes in India" (2020-2022).
+                        </p>
+
+                        <h5 class="font-semibold text-slate-300 mb-2">Technologies</h5>
+                        <div class="flex flex-wrap gap-2 justify-center mb-6">
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Google Looker Studio</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">GCP BigQuery</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Python Data Pipeline</span>
+                            <span class="tech-tag px-3 py-1 rounded-full text-sm">Looker API / Google APIs</span>
+                        </div>
+                        
+                        <h5 class="font-semibold text-slate-300 mb-2">Key Highlights</h5>
+                        <ul class="list-disc list-inside text-slate-400 space-y-1 mb-6 text-left inline-block">
+                            <li>Directly integrated with GCP BigQuery via an automated data pipeline.</li>
+                            <li>Designed to improve data accessibility and facilitate quicker stakeholder decision-making.</li>
+                            <li>This project demonstrates end-to-end ELT/BI capability from source to visualization.</li>
+                        </ul>
+                        
+                        <!-- Button for Live Dashboard -->
+                        <div class="flex justify-center">
+                            <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="btn-primary w-full md:w-auto px-6 py-3 rounded-xl font-semibold text-lg hover:ring-2 ring-cyan-400 flex items-center justify-center mt-4 md:mt-0">
+                                View Live Dashboard <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 
                 <!-- Project 2: Client Data Automation Solutions (GCP, CI/CD, Terraform) -->
-                <div class="card p-8 rounded-2xl">
+                <div class="card p-8 rounded-2xl border-l-4 border-fuchsia-500">
                     <h4 class="text-3xl font-bold text-accent mb-3">Client Data Automation Solutions</h4>
                     <p class="text-slate-400 text-lg mb-6">Built and deployed automated pipelines for enterprise reporting (HCLTech)</p>
 
@@ -358,28 +359,18 @@
                         <div class="col-span-2">
                             <h5 class="font-semibold text-slate-300 mb-2">Key Achievements</h5>
                             <ul class="list-disc list-inside text-slate-400 space-y-1">
-                                <li>Streamlined data flow (SharePoint $\rightarrow$ BigQuery $\rightarrow$ Power BI), reducing manual reporting by <strong>35%</strong>.</li>
-                                <li>Designed <strong>CI/CD workflows</strong> for Cloud Run functions, <strong>cutting deployment time by 60%</strong>.</li>
-                                <li>Automated data freeze process, reducing manual work from <strong>4 hours to 45 minutes</strong>.</li>
+                                <li>Streamlined data flow (SharePoint $\rightarrow$ BigQuery $\rightarrow$ Power BI), reducing manual reporting by 35%.</li>
+                                <li>Designed CI/CD workflows for Cloud Run functions, cutting deployment time by 60%.</li>
+                                <li>Automated data freeze process, reducing manual work from 4 hours to 45 minutes.</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Architecture Diagram Placeholder (Replaced with descriptive text) -->
-                    <div class="architecture-placeholder rounded-xl">
-                        <p class="text-lg font-bold text-white mb-2">Architectural Diagram: SharePoint to BI Pipeline</p>
-                        <p class="text-sm text-slate-400">
-                            **Visual Components to be included in the diagram:**
-                            <ol class="list-decimal list-inside ml-4 mt-2 space-y-1 text-left">
-                                <li>**Source:** SharePoint API (Data Ingestion Trigger).</li>
-                                <li>**Compute/ETL:** GCP Cloud Run (Python ETL service).</li>
-                                <li>**Data Warehouse:** GCP BigQuery (Staging and Final Tables).</li>
-                                <li>**CI/CD:** Google Cloud Build / Artifact Registry (for automated Cloud Run deployments).</li>
-                                <li>**IaC:** Terraform (Managing all GCP resources).</li>
-                                <li>**Destination/BI:** Power BI Service (Connected to BigQuery).</li>
-                            </ol>
-                        </p>
+                    <!-- ARCHITECTURE DIAGRAM 1: BI_pipeline.png -->
+                    <div class="architecture-image-container mb-4">
+                        <img src="Pictures/BI_pipeline.png" alt="Architectural diagram showing SharePoint, GCP BigQuery, and Power BI pipeline flow" onerror="this.onerror=null;this.src='https://placehold.co/800x300/1f2937/94a3b8?text=BI_pipeline.png+Diagram+Placeholder';">
                     </div>
+
                     <div class="text-right mt-4">
                         <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
                             View Code & Documentation <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
@@ -388,7 +379,7 @@
                 </div>
 
                 <!-- Project 3: Automated Data Mining, Cleaning and Loading (ETL) -->
-                <div class="card p-8 rounded-2xl">
+                <div class="card p-8 rounded-2xl border-l-4 border-fuchsia-500">
                     <h4 class="text-3xl font-bold text-accent mb-3">Automated UK Government Data ETL</h4>
                     <p class="text-slate-400 text-lg mb-6">Developed an ETL tool to ingest and refine large datasets for a client web application.</p>
 
@@ -410,20 +401,11 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Architecture Diagram Placeholder (Replaced with descriptive text) -->
-                    <div class="architecture-placeholder rounded-xl">
-                        <p class="text-lg font-bold text-white mb-2">Architectural Diagram: Data Mining & ETL Flow</p>
-                        <p class="text-sm text-slate-400">
-                            **Visual Components to be included in the diagram:**
-                            <ol class="list-decimal list-inside ml-4 mt-2 space-y-1 text-left">
-                                <li>**Sources:** UK Government Data APIs/Files.</li>
-                                <li>**Extraction & Transformation:** Python ETL Script (Data mining, cleaning, validation).</li>
-                                <li>**Database:** PostgreSQL (Schema definition and final table storage).</li>
-                                <li>**Orchestration:** Cron Job / Simple Scheduler.</li>
-                                <li>**Consumption:** Client Web Application (Reading from PostgreSQL).</li>
-                            </ol>
-                        </p>
+                    <!-- ARCHITECTURE DIAGRAM 2: Solomon_Workflow.png -->
+                    <div class="architecture-image-container mb-4">
+                        <img src="Pictures/Solomon_Workflow.png" alt="Architectural diagram showing UK Government data ingestion and ETL flow" onerror="this.onerror=null;this.src='https://placehold.co/800x300/1f2937/94a3b8?text=Solomon_Workflow.png+Diagram+Placeholder';">
                     </div>
+
                     <div class="text-right mt-4">
                         <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
                             View Code & Documentation <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
@@ -432,7 +414,7 @@
                 </div>
 
                 <!-- Project 4: Sentiment Analysis of Scraped Content -->
-                <div class="card p-8 rounded-2xl">
+                <div class="card p-8 rounded-2xl border-l-4 border-fuchsia-500">
                     <h4 class="text-3xl font-bold text-accent mb-3">Content Sentiment Analysis Pipeline</h4>
                     <p class="text-slate-400 text-lg mb-6">Automated script to calculate sentiment from 200+ scraped websites.</p>
 
@@ -455,19 +437,9 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Architecture Diagram Placeholder (Replaced with descriptive text) -->
-                    <div class="architecture-placeholder rounded-xl">
-                        <p class="text-lg font-bold text-white mb-2">Architectural Diagram: Web Scraping and Sentiment Pipeline</p>
-                        <p class="text-sm text-slate-400">
-                            **Visual Components to be included in the diagram:**
-                            <ol class="list-decimal list-inside ml-4 mt-2 space-y-1 text-left">
-                                <li>**Sources:** 200+ Scraped Websites.</li>
-                                <li>**Extraction:** Python Scraper (BeautifulSoup/Selenium) - Handles structured/unstructured content.</li>
-                                <li>**Processing:** NLP Library (Sentiment Calculation).</li>
-                                <li>**Storage:** Database/Data Store (e.g., ElasticSearch, for easy querying).</li>
-                                <li>**Monitoring:** Kibana (Visualization of sentiment trends).</li>
-                            </ol>
-                        </p>
+                    <!-- ARCHITECTURE DIAGRAM 2: Solomon_Workflow.png -->
+                    <div class="architecture-image-container mb-4">
+                        <img src="Pictures/Web_scrape.png" alt="Web Scrape Automated Workflow for Sentiment Analysis">
                     </div>
                     <div class="text-right mt-4">
                         <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
@@ -488,7 +460,7 @@
             <div class="flex justify-center space-x-6">
                 <a href="mailto:sparshv2325@gmail.com" class="card p-4 rounded-xl hover:ring-2 ring-accent transition duration-300 flex items-center space-x-2 text-lg">
                     <i data-lucide="mail" class="w-6 h-6 text-red-500"></i>
-                    <span>sparshv2325@gmail.com</span>
+                    <span>Mail</span>
                 </a>
                 <a href="https://github.com/your-github" target="_blank" class="card p-4 rounded-xl hover:ring-2 ring-accent transition duration-300 flex items-center space-x-2 text-lg">
                     <i data-lucide="github" class="w-6 h-6 text-white"></i>
