@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparsh Verma | Project Gallery & Code Deep Dives</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Synced Custom styles for a technical, modern look (Theme from index.html) */
+        :root {
+            --primary-color: #06b6d4; /* Cyan 500 */
+            --bg-color: #0f172a; /* Slate 900 */
+            --card-color: #1e293b; /* Slate 800 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: #f1f5f9; /* Slate 100 */
+            scroll-behavior: smooth;
+        }
+        .text-accent {
+            color: var(--primary-color);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0891b2; /* Cyan 600 */
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+        }
+        .card {
+            background-color: var(--card-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .tech-tag {
+            background-color: #334155; /* Slate 700 */
+            color: #cbd5e1; /* Slate 300 */
+            border: 1px solid #475569; /* Slate 600 */
+        }
+        /* Gallery Specific Styles */
+        .gallery-container {
+            overflow: hidden;
+            border-radius: 1rem;
+            position: relative;
+        }
+        .slideshow {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+        /* Code Block Styling for Deep Dive */
+        .code-block {
+            background-color: #1e293b; /* Slate 800 */
+            color: #e2e8f0; /* Slate 200 */
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+        .code-comment {
+            color: #94a3b8; /* Slate 400 */
+        }
+        .code-keyword {
+            color: #f87171; /* Red 400 */
+        }
+        .code-string {
+            color: #a7f3d0; /* Emerald 200 */
+        }
+        .code-function {
+            color: #60a5fa; /* Blue 400 */
+        }
+        .code-variable {
+             color: #fcd34d; /* Amber 300 */
+        }
+    </style>
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 3; 
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateSlideshow();
+        }
+
+        function updateSlideshow() {
+            const slideshow = document.getElementById('slideshow');
+            if (slideshow) {
+                const offset = -currentSlide * 100;
+                slideshow.style.transform = `translateX(${offset}%)`;
+            }
+            updateDots();
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateSlideshow();
+        }
+        
+        function updateDots() {
+            const dots = document.querySelectorAll('.slide-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('bg-accent');
+                    dot.classList.remove('bg-slate-500');
+                } else {
+                    dot.classList.add('bg-slate-500');
+                    dot.classList.remove('bg-accent');
+                }
+            });
+        }
+        
+        // --- Initialization ---
+        window.onload = function() {
+            lucide.createIcons();
+            // Start slideshow on load
+            updateSlideshow();
+        }
+
+        // Simple navigation logic
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</head>
+
+<body class="antialiased">
+
+    <!-- Navbar (Fixed Header) - SYNCED -->
+    <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-tight">
+                <a href="index.html" class="text-accent hover:text-white transition duration-200">Sparsh.DE</a>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="index.html#skills" class="hover:text-accent cursor-pointer transition duration-200">Skills</a>
+                <a href="index.html#experience" class="hover:text-accent cursor-pointer transition duration-200">Experience</a>
+                <a href="index.html#projects" class="hover:text-accent cursor-pointer transition duration-200">Summary</a>
+                <a href="#code-deep-dives" class="hover:text-accent cursor-pointer transition duration-200">Code Deep Dive</a>
+            </div>
+            <a href="index.html" class="md:hidden p-2 rounded-full text-accent hover:bg-slate-800 transition">
+                <i data-lucide="home" class="w-6 h-6"></i>
+            </a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header for Page 2 -->
+        <section class="py-20 md:py-24 text-center border-b border-slate-700">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tighter">
+                Project <span class="text-accent">Gallery</span>
+            </h1>
+            <h2 class="text-xl md:text-2xl text-slate-300 font-light max-w-3xl mx-auto">
+                Interactive dashboards and architectural deep-dives demonstrating end-to-end Data Engineering capabilities.
+            </h2>
+        </section>
+
+        <!-- 1. Dashboard Gallery Slideshow -->
+        <section id="dashboard-gallery" class="py-16">
+            <h3 class="text-4xl font-bold mb-10 text-center">Interactive Dashboards</h3>
+            
+            <div class="card p-4 md:p-8 gallery-container">
+                <div id="slideshow" class="slideshow">
+
+                    <!-- Slide 1: Crimes in India Dashboard (Provided) -->
+                    <div class="slide p-4">
+                        <div class="text-center mb-6">
+                            <h4 class="text-2xl font-bold text-fuchsia-400 mb-2">Crimes in India BI Report</h4>
+                            <p class="text-slate-400">Analysis of NCRB data on age group and region, facilitated by a GCP pipeline.</p>
+                        </div>
+                        <!-- IMPORTANT: Assumes image is in the Pictures folder -->
+                        <img src="Pictures/image_fb3b44.jpg" alt="Crimes in India Dashboard Screenshot" class="w-full max-w-4xl mx-auto rounded-xl shadow-2xl border border-slate-700">
+                        <div class="flex justify-center mt-6">
+                            <a href="https://lookerstudio.google.com/reporting/d1531916-abb9-4b6d-ba63-aff9a4465eda" target="_blank" class="btn-primary px-6 py-3 rounded-xl font-semibold flex items-center">
+                                View Live Dashboard <i data-lucide="external-link" class="w-5 h-5 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Placeholder for a second dashboard (e.g., from Blackcoffer) -->
+                    <div class="slide p-4">
+                        <div class="text-center mb-6">
+                            <h4 class="text-2xl font-bold text-fuchsia-400 mb-2">Client Business Performance Dashboard</h4>
+                            <p class="text-slate-400">Power BI visualization showing key metrics and performance trends (HCLTech/Blackcoffer).</p>
+                        </div>
+                        <!-- Placeholder image for visual consistency -->
+                        <img src="https://placehold.co/1024x576/1e293b/a7f3d0?text=Power+BI+Dashboard+2" alt="Power BI Dashboard Placeholder" class="w-full max-w-4xl mx-auto rounded-xl shadow-2xl border border-slate-700">
+                        <div class="flex justify-center mt-6">
+                             <a href="#" target="_blank" class="bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center hover:bg-slate-600 transition">
+                                Dashboard Link Pending <i data-lucide="lock" class="w-5 h-5 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Placeholder for a third dashboard (e.g., Sentiment Analysis Result) -->
+                    <div class="slide p-4">
+                        <div class="text-center mb-6">
+                            <h4 class="text-2xl font-bold text-fuchsia-400 mb-2">Sentiment Analysis Results</h4>
+                            <p class="text-slate-400">Visualization of sentiment scores across 200+ scraped websites.</p>
+                        </div>
+                        <!-- Placeholder image for visual consistency -->
+                        <img src="https://placehold.co/1024x576/1e293b/60a5fa?text=Sentiment+Analysis+Dashboard+3" alt="Sentiment Analysis Dashboard Placeholder" class="w-full max-w-4xl mx-auto rounded-xl shadow-2xl border border-slate-700">
+                         <div class="flex justify-center mt-6">
+                            <a href="#" target="_blank" class="bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center hover:bg-slate-600 transition">
+                                Dashboard Link Pending <i data-lucide="lock" class="w-5 h-5 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button onclick="moveSlide(-1)" class="absolute top-1/2 left-4 transform -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/75 transition z-10 text-white">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+                <button onclick="moveSlide(1)" class="absolute top-1/2 right-4 transform -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/75 transition z-10 text-white">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
+                
+                <!-- Dots Indicator -->
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                    <button class="slide-dot w-3 h-3 rounded-full bg-slate-500 transition-colors" onclick="goToSlide(0)"></button>
+                    <button class="slide-dot w-3 h-3 rounded-full bg-slate-500 transition-colors" onclick="goToSlide(1)"></button>
+                    <button class="slide-dot w-3 h-3 rounded-full bg-slate-500 transition-colors" onclick="goToSlide(2)"></button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 2. Code Deep Dive Section -->
+        <section id="code-deep-dives" class="py-16 border-t border-slate-700">
+            <h3 class="text-4xl font-bold mb-10 text-center">Code Deep Dives: Architecture & Logic</h3>
+            <p class="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
+                A look under the hood at the critical code components for ETL, FastAPI services, and infrastructure-as-Code.
+            </p>
+
+            <div class="space-y-16">
+                
+                <!-- DEEP DIVE 1: ETL Pipeline Logic (Python) - Project 3 -->
+                <div class="card p-8 rounded-2xl border-l-4 border-cyan-500">
+                    <h4 class="text-3xl font-bold text-accent mb-4">ETL Transformation Logic (Python)</h4>
+                    <p class="text-slate-400 mb-6">Snippet of the Python function responsible for cleaning and refining UK government datasets before loading to PostgreSQL (Project 3).</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="text-xl font-semibold text-slate-300 mb-3 flex items-center"><i data-lucide="cpu" class="w-5 h-5 mr-2 text-cyan-400"></i> Core Transformation Function</h5>
+                            <pre class="code-block h-64">
+<span class="code-comment"># Function to standardize currency and date formats</span>
+<span class="code-keyword">def</span> <span class="code-function">clean_and_transform</span>(<span class="code-variable">df</span>):
+    <span class="code-comment"># Drop rows where key identifier is missing</span>
+    <span class="code-variable">df</span> = <span class="code-variable">df</span>.<span class="code-function">dropna</span>(subset=<span class="code-string">'record_id'</span>)
+    
+    <span class="code-comment"># Convert currency to standard float format</span>
+    <span class="code-variable">df</span>[<span class="code-string">'amount'</span>] = <span class="code-variable">df</span>[<span class="code-string">'amount'</span>].<span class="code-function">str.replace</span>(<span class="code-string">'£'</span>, <span class="code-string">''</span>)
+    <span class="code-variable">df</span>[<span class="code-string">'amount'</span>] = <span class="code-variable">df</span>[<span class="code-string">'amount'</span>].<span class="code-function">str.replace</span>(<span class="code-string">','</span>, <span class="code-string">''</span>).<span class="code-function">astype</span>(float)
+
+    <span class="code-comment"># Standardize all date columns to YYYY-MM-DD</span>
+    <span class="code-keyword">for</span> col <span class="code-keyword">in</span> [<span class="code-string">'issue_date'</span>, <span class="code-string">'expiry_date'</span>]:
+        <span class="code-variable">df</span>[col] = pd.<span class="code-function">to_datetime</span>(<span class="code-variable">df</span>[col], errors=<span class="code-string">'coerce'</span>)
+
+    <span class="code-comment"># Feature Engineering: Calculate duration in days</span>
+    <span class="code-variable">df</span>[<span class="code-string">'duration_days'</span>] = (<span class="code-variable">df</span>[<span class="code-string">'expiry_date'</span>] - <span class="code-variable">df</span>[<span class="code-string">'issue_date'</span>]).<span class="code-function">dt.days</span>
+    
+    <span class="code-keyword">return</span> <span class="code-variable">df</span>
+                            </pre>
+                             <div class="text-right mt-4">
+                                <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
+                                    View Full Repository <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="architecture-image-container">
+                             <h5 class="text-xl font-semibold text-slate-300 mb-3 flex items-center"><i data-lucide="git-merge" class="w-5 h-5 mr-2 text-cyan-400"></i> ETL Architecture Flow</h5>
+                             <img src="Pictures/Solomon_Workflow.png" alt="Architectural diagram showing UK Government data ingestion and ETL flow" class="rounded-lg border border-slate-700">
+                             <p class="text-sm text-slate-400 mt-2">Diagram: Automated Data Mining, Cleaning and Loading (ETL)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEEP DIVE 2: FastAPI Endpoint (Cloud Run CI/CD) - Project 2 -->
+                <div class="card p-8 rounded-2xl border-l-4 border-rose-500">
+                    <h4 class="text-3xl font-bold text-rose-400 mb-4">FastAPI Endpoint (GCP Cloud Run)</h4>
+                    <p class="text-slate-400 mb-6">Demonstrating a Python API endpoint used to serve clean data for integration with Power Apps and Power Automate (HCLTech Automation Solution).</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="architecture-image-container order-2 md:order-1">
+                             <h5 class="text-xl font-semibold text-slate-300 mb-3 flex items-center"><i data-lucide="cloud" class="w-5 h-5 mr-2 text-rose-400"></i> Cloud Run CI/CD Architecture</h5>
+                             <img src="Pictures/BI_pipeline.png" alt="Architectural diagram showing GCP CI/CD deployment flow" class="rounded-lg border border-slate-700">
+                             <p class="text-sm text-slate-400 mt-2">Diagram: GCP CI/CD for Automation Endpoint</p>
+                        </div>
+
+                        <div class="order-1 md:order-2">
+                            <h5 class="text-xl font-semibold text-slate-300 mb-3 flex items-center"><i data-lucide="zap" class="w-5 h-5 mr-2 text-rose-400"></i> FastAPI Endpoint Code</h5>
+                            <pre class="code-block h-64">
+<span class="code-comment"># main.py for Cloud Run deployment</span>
+<span class="code-keyword">from</span> fastapi <span class="code-keyword">import</span> FastAPI, HTTPException
+<span class="code-keyword">from</span> typing <span class="code-keyword">import</span> List, Dict
+
+<span class="code-variable">app</span> = <span class="code-function">FastAPI</span>()
+
+<span class="code-comment"># Mock database connection / BigQuery interface</span>
+<span class="code-variable">DATA_SOURCE</span> = get_bigquery_client()
+
+<span class="code-comment"># Endpoint to retrieve processed client data</span>
+@<span class="code-variable">app</span>.<span class="code-function">get</span>(<span class="code-string">"/api/v1/client_data"</span>, response_model=<span class="code-function">List</span>[<span class="code-function">Dict</span>])
+<span class="code-keyword">async def</span> <span class="code-function">get_client_data</span>():
+    <span class="code-keyword">try</span>:
+        <span class="code-variable">query</span> = <span class="code-string">"SELECT * FROM client_dataset.latest_snapshot"</span>
+        <span class="code-variable">results</span> = <span class="code-variable">DATA_SOURCE</span>.<span class="code-function">query</span>(<span class="code-variable">query</span>).<span class="code-function">to_dataframe</span>()
+        <span class="code-keyword">return</span> <span class="code-variable">results</span>.<span class="code-function">to_dict</span>(<span class="code-string">'records'</span>)
+    <span class="code-keyword">except</span> Exception <span class="code-keyword">as</span> <span class="code-variable">e</span>:
+        <span class="code-keyword">raise</span> <span class="code-function">HTTPException</span>(
+            status_code=500, detail=<span class="code-string">f"Database error: {e}"</span>
+        )
+                            </pre>
+                            <div class="text-right mt-4">
+                                <a href="https://github.com/your-repo-link" target="_blank" class="text-accent hover:underline flex items-center justify-end">
+                                    View Full Repository <i data-lucide="external-link" class="w-4 h-4 ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer - SYNCED -->
+    <footer class="bg-slate-950 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-500">
+            <p>&copy; 2024 Sparsh Verma. Data Engineering Portfolio.</p>
+            <p class="mt-2">Built with <span class="text-red-500">♥</span> and Tailwind CSS.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
